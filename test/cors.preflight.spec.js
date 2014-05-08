@@ -1,6 +1,6 @@
 //
 // Based on the spec at http://www.w3.org/TR/cors/
-// The test numbers correspond do steps in the specification
+// The test numbers correspond to steps in the specification
 //
 
 var request  = require('supertest');
