@@ -1,10 +1,15 @@
 {
   "name": "restify-cors-middleware",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Tabcorp Digital Technology Team",
   "license": "MIT",
   "description": "Common middlewares for all Node.js web services",
-  "keywords": ["restify", "cors", "cross origin", "headers"],
+  "keywords": [
+    "restify",
+    "cors",
+    "cross origin",
+    "headers"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/TabDigital/restify-cors-middleware.git"
