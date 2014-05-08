@@ -40,15 +40,20 @@ function preflightHandler(options) {
     allowedHeaders = DEFAULT_ALLOW_HEADERS.concat(['x-requested-with'])
                                           .concat(options.allowHeaders);
 
-    // 6.2.7
-    res.header('Access-Control-Allow-Origin', req.headers['origin']);
-    res.header('Access-Control-Allow-Credentials', true);
+    res.once('header', function() {
 
-    // 6.2.9
-    res.header('Access-Control-Allow-Methods', allowedMethods.join(', '));
+      // 6.2.7
+      res.header('Access-Control-Allow-Origin', req.headers['origin']);
+      res.header('Access-Control-Allow-Credentials', true);
 
-    // 6.2.10
-    res.header('Access-Control-Allow-Headers', allowedHeaders.join(', '));
+      // 6.2.9
+      res.header('Access-Control-Allow-Methods', allowedMethods.join(', '));
+
+      // 6.2.10
+      res.header('Access-Control-Allow-Headers', allowedHeaders.join(', '));
+
+    });
+
     res.send(HTTP_NO_CONTENT);
   };
 }
