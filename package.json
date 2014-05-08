@@ -1,0 +1,24 @@
+{
+  "name": "restify-cors-middleware",
+  "version": "0.0.0",
+  "author": "Tabcorp Digital Technology Team",
+  "license": "MIT",
+  "description": "Common middlewares for all Node.js web services",
+  "keywords": ["restify", "cors", "cross origin", "headers"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TabDigital/restify-cors-middleware.git"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "peerDependencies": {
+    "restify": "~2.7.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.18.2",
+    "should": "~3.3.1",
+    "supertest": "~0.12.0"
+  }
+}
