@@ -1,6 +1,6 @@
 var util       = require('util');
-var restify    = require('restify');
 var preflight  = require('./preflight');
+var actual     = require('./actual');
 
 module.exports = function(options) {
 
@@ -9,17 +9,8 @@ module.exports = function(options) {
   if (! util.isArray(options.exposeHeaders)) options.exposeHeaders = [];
 
   return {
-
-    actual: restify.CORS({
-      origins: options.origins,
-      headers: options.exposeHeaders
-    }),
-
-    preflight: preflight.handler({
-      origins: options.origins,
-      allowHeaders: options.allowHeaders
-    })
-
+    actual: actual.handler(options),
+    preflight: preflight.handler(options)
   };
 
 };

@@ -1,6 +1,17 @@
 var restify   = require('restify');
 var origin    = require('./origin');
 
+//
+// For now we use the "default headers" from restify.CORS
+// Maybe this should just be a global setting on this module
+// (ie. list of extra Access-Control-Expose-Headers, regardless of what the middleware config says)
+//
+
+//
+// TODO:
+// Handle the spec better around "simple methods" and "simple headers".
+//
+
 var DEFAULT_ALLOW_HEADERS = restify.CORS.ALLOW_HEADERS;
 var HTTP_NO_CONTENT = 204;
 
