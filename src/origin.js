@@ -1,10 +1,15 @@
 
-exports.match = function(origin, list) {
-  function belongs(o) {
-    return (origin === o || o === "*");
+exports.allowed = function(list, requestOrigin) {
+  function match(origin) {
+    if (origin.indexOf('*') !== -1) {
+      var regex = '^' + origin.replace('.', '\\.').replace('*', '.*') + '$';
+      return requestOrigin.match(regex);
+    } else {
+      return requestOrigin === origin;
+    }
   }
-  if (origin && list.some(belongs)) {
-    return origin;
+  if (requestOrigin) {
+    return list.some(match);
   } else {
     return false;
   }

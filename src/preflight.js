@@ -22,7 +22,7 @@ exports.handler = function(options) {
 
     // 6.2.1 and 6.2.2
     originHeader = req.headers['origin'];
-    if (origin.match(originHeader, options.origins) === false) return next();
+    if (origin.allowed(options.origins || [], originHeader) === false) return next();
 
     // 6.2.3
     requestedMethod = req.headers['access-control-request-method'];
