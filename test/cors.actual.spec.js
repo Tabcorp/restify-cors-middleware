@@ -94,4 +94,30 @@ describe('CORS: simple / actual requests', function () {
         .expect(200)
         .end(done)
   })
+
+  xit('6.4 FIXME Does not need the Vary header if it accepts all Origins', function (done) {
+    var server = test.corsServer({
+      origins: ['*']
+    })
+    request(server)
+      .get('/test')
+      .set('Origin', 'http://api.myapp.com')
+      .expect('access-control-allow-origin', '*')
+      .expect(test.noHeader('vary'))
+      .expect(200)
+      .end(done)
+  })
+
+  xit('6.4 FIXME Sets the Vary header if it returns the actual origin', function (done) {
+    var server = test.corsServer({
+      origins: ['http://api.myapp.com']
+    })
+    request(server)
+      .get('/test')
+      .set('Origin', 'http://api.myapp.com')
+      .expect('access-control-allow-origin', 'http://api.myapp.com')
+      .expect('vary', 'Origin')
+      .expect(200)
+      .end(done)
+  })
 })

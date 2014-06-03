@@ -1,4 +1,8 @@
 
+exports.generic = function (list) {
+  return list.length === 1 && list[0] === '*'
+}
+
 exports.create = function (allowedOrigins) {
   // pre-compile list of matchers, so regexes are only built once
   var matchers = allowedOrigins.map(createMatcher)

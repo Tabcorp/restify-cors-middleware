@@ -19,7 +19,7 @@
 const corsMiddleware = require('restify-cors-middleware')
 
 const cors = corsMiddleware({
-  preflightMaxAge: 5, //Optional
+  preflightMaxAge: 5,
   origins: ['http://api.myapp.com', 'http://web.myapp.com'],
   allowHeaders: ['API-Token'],
   exposeHeaders: ['API-Token-Expiry']
@@ -31,23 +31,25 @@ server.use(cors.actual)
 
 ## Allowed origins
 
-You can specify the full list of domains and subdomains allowed in your application:
+You can specify the full list of domains and subdomains allowed in your application.
+As a convenience method, you can use the `*` character as a wildcard.
 
 ```js
 origins: [
   'http://myapp.com',
-  'http://*.myapp.com'
+  'http://*.myotherapp.com'
 ]
 ```
 
-For added security, this middleware sets `Access-Control-Allow-Origin` to the origin that matched, not the configured wildcard.
-This means callers won't know about other domains that are supported.
+The `Access-Control-Allow-Origin` header will be set to the actual origin that matched, on a per-request basis. The person making the request will not know about the full configuration, like other allowed domains or any wildcards in use.
 
-Setting `origins: ['*']` is also valid, although it comes with obvious security implications. Note that it will still return a customised response (matching Origin), so any caching layer (reverse proxy or CDN) will grow in size accordingly.
+The main side-effect is that every response will include `Vary: Origin`, since the response headers depend on the origin. This is the safest setup, but will decrease your cache hit-rate / increase your cache size with every origin.
 
-## Troubleshooting
+## Open CORS setup
 
-As per the spec, requests without an `Origin` will not receive any headers. Requests with a matching `Origin` will receive the appropriate response headers. Always be careful that any reverse proxies (e.g. Varnish) very their cache depending on the origin, so you don't serve CORS headers to the wrong request.
+Using `origins: ['*']` is also a valid setup, which comes with obvious security implications. This means **any** domain will be able to query your API. However it does have performance benefits. When using `['*']`, the middleware always responds with `Access-Control-Allow-Origin: *` which means responses can be cached regardless of origins.
+
+Each API should weigh the security and performance angles before choosing this approach.
 
 ## Compliance to the spec
 
