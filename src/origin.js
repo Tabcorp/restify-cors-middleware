@@ -1,16 +1,16 @@
-exports.match = function (incomingOrigin, origins) {
-  if (!incomingOrigin) {
-    return null
-  }
 
-  for (var i = 0; i < origins.length; i++) {
-    var origin = origins[i]
-    if ((origin instanceof RegExp && origin.test(incomingOrigin)) ||
-            (typeof origin === 'string' && origin === incomingOrigin) ||
-            (origin === '*')) {
-      return incomingOrigin
+exports.allowed = function (list, requestOrigin) {
+  function match (origin) {
+    if (origin.indexOf('*') !== -1) {
+      var regex = '^' + origin.replace('.', '\\.').replace('*', '.*') + '$'
+      return requestOrigin.match(regex)
+    } else {
+      return requestOrigin === origin
     }
   }
-
-  return null
+  if (requestOrigin) {
+    return list.some(match)
+  } else {
+    return false
+  }
 }

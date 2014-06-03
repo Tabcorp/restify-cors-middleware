@@ -7,7 +7,7 @@ exports.handler = function (options) {
 
     // If either no origin was set, or the origin isn't supported, continue
     // without setting any headers
-    if (!originHeader || !origin.match(originHeader, options.origins)) {
+    if (!originHeader || !origin.allowed(options.origins || [], originHeader)) {
       return next()
     }
 
