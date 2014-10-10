@@ -84,8 +84,18 @@ describe('CORS: preflight requests', function() {
         .end(done);
     });
 
-    xit('6.2.8 Access-Control-Max-Age not supported', function(done) {
-      done();
+    it('6.2.8 Set the Access-Control-Max-Age header if a max age is provided', function(done) {
+      var server = test.corsServer({
+        preflightMaxAge: 5,
+        origins: ['http://api.myapp.com', 'http://www.myapp.com']
+      });
+      request(server)
+        .options('/test')
+        .set('Origin', 'http://api.myapp.com')
+        .set('Access-Control-Request-Method', 'GET')
+        .expect('Access-Control-Max-Age', '5')
+        .expect(204)
+        .end(done);
     });
 
     it('6.2.9 Set the Allow-Method header', function(done) {
