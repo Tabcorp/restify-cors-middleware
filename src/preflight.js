@@ -42,6 +42,11 @@ exports.handler = function(options) {
       res.header('Access-Control-Allow-Origin', originHeader);
       res.header('Access-Control-Allow-Credentials', true);
 
+      // 6.2.8
+      if (options.preflightMaxAge) {
+        res.header('Access-Control-Max-Age', options.preflightMaxAge);
+      }
+
       // 6.2.9
       res.header('Access-Control-Allow-Methods', allowedMethods.join(', '));
 
@@ -54,4 +59,3 @@ exports.handler = function(options) {
   };
 
 };
-
