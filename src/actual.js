@@ -12,6 +12,7 @@ var restify = require('restify');
 exports.handler = function(options) {
 
   return restify.CORS({
+    credentials: options.credentials,
     origins: options.origins,
     headers: options.exposeHeaders
   });

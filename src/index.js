@@ -7,6 +7,7 @@ module.exports = function(options) {
   if (! util.isArray(options.origins))       options.origins = ['*'];
   if (! util.isArray(options.allowHeaders))  options.allowHeaders = [];
   if (! util.isArray(options.exposeHeaders)) options.exposeHeaders = [];
+  if (options.origins[0] === '*')            options.credentials = false;
 
   return {
     actual: actual.handler(options),
