@@ -1,6 +1,6 @@
 {
   "name": "restify-cors-middleware",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Tabcorp Digital Technology Team",
   "license": "MIT",
   "description": "Common middlewares for all Node.js web services",
