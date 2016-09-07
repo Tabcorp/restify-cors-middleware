@@ -2,6 +2,15 @@
 
 > CORS middleware with full [W3C spec](www.w3.org/TR/cors) support.
 
+[![NPM](http://img.shields.io/npm/v/restify-cors-middleware.svg?style=flat)](https://npmjs.org/package/restify-cors-middleware)
+[![License](http://img.shields.io/npm/l/restify-cors-middleware.svg?style=flat)](https://github.com/TabDigital/restify-cors-middleware)
+
+[![Build Status](http://img.shields.io/travis/TabDigital/restify-cors-middleware.svg?style=flat)](http://travis-ci.org/TabDigital/restify-cors-middleware)
+[![Dependencies](http://img.shields.io/david/TabDigital/restify-cors-middleware.svg?style=flat)](https://david-dm.org/TabDigital/restify-cors-middleware)
+[![Dev dependencies](http://img.shields.io/david/dev/TabDigital/restify-cors-middleware.svg?style=flat)](https://david-dm.org/TabDigital/restify-cors-middleware)
+[![Peer dependencies](http://img.shields.io/david/peer/TabDigital/restify-cors-middleware.svg?style=flat)](https://david-dm.org/TabDigital/restify-cors-middleware)
+[![Known Vulnerabilities](https://snyk.io/package/npm/restify-cors-middleware/badge.svg)](https://snyk.io/package/npm/restify-cors-middleware)
+
 ## Usage
 
 ```js
