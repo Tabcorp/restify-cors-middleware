@@ -21,19 +21,19 @@ exports.handler = function(options) {
     if (req.method !== 'OPTIONS') return next();
 
     // 6.2.1 and 6.2.2
-    originHeader = req.headers['origin'];
+    var originHeader = req.headers['origin'];
     if (origin.match(originHeader, options.origins) === false) return next();
 
     // 6.2.3
-    requestedMethod = req.headers['access-control-request-method'];
+    var requestedMethod = req.headers['access-control-request-method'];
     if (!requestedMethod) return next();
 
     // 6.2.4
-    requestedHeaders = req.headers['access-control-request-headers'];
+    var requestedHeaders = req.headers['access-control-request-headers'];
     requestedHeaders = requestedHeaders ? requestedHeaders.split(', ') : [];
 
-    allowedMethods = [requestedMethod, 'OPTIONS'];
-    allowedHeaders = DEFAULT_ALLOW_HEADERS.concat(['x-requested-with'])
+    var allowedMethods = [requestedMethod, 'OPTIONS'];
+    var allowedHeaders = DEFAULT_ALLOW_HEADERS.concat(['x-requested-with'])
                                           .concat(options.allowHeaders);
 
     res.once('header', function() {
