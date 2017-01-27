@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "mocha": "~3.2.0",
-    "should": "~11.1.0",
+    "should": "~11.2.0",
     "restify": "~4.3.0",
     "supertest": "~2.0.0"
   }
