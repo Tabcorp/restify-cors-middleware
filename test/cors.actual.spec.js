@@ -44,6 +44,32 @@ describe('CORS: simple / actual requests', function() {
         .end(done);
    });
 
+   it('6.1.3 Does not set Access-Control-Allow-Credentials header if Origin is *', function(done) {
+      var server = test.corsServer({
+        origins: ['*'],
+        credentials: true
+      });
+      request(server)
+        .get('/test')
+        .set('Origin', 'http://api.myapp.com')
+        .expect(test.noHeader('access-control-allow-credentials'))
+        .expect(200)
+        .end(done);
+    });
+
+   it('6.1.3 Sets Access-Control-Allow-Credentials header if configured', function(done) {
+      var server = test.corsServer({
+        origins: ['http://api.myapp.com'],
+        credentials: true
+      });
+      request(server)
+        .get('/test')
+        .set('Origin', 'http://api.myapp.com')
+        .expect('access-control-allow-credentials', 'true')
+        .expect(200)
+        .end(done);
+    });
+
    it('6.1.4 Does not set exposed headers if empty', function(done) {
       var server = test.corsServer({
         origins: ['http://api.myapp.com', 'http://www.myapp.com']
