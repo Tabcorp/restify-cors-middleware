@@ -22,7 +22,7 @@
     "restify": "2.6.x - 4.3.x"
   },
   "devDependencies": {
-    "mocha": "~3.2.0",
+    "mocha": "~3.4.1",
     "should": "~11.2.1",
     "restify": "~4.3.0",
     "supertest": "~3.0.0"
