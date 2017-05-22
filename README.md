@@ -11,6 +11,8 @@
 [![Peer dependencies](http://img.shields.io/david/peer/TabDigital/restify-cors-middleware.svg?style=flat)](https://david-dm.org/TabDigital/restify-cors-middleware)
 [![Known Vulnerabilities](https://snyk.io/package/npm/restify-cors-middleware/badge.svg)](https://snyk.io/package/npm/restify-cors-middleware)
 
+[![JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+
 ## Usage
 
 ```js

@@ -1,7 +1,7 @@
-var assert = require('assert-plus');
-var preflight = require('./preflight');
-var actual = require('./actual');
-var constants = require('./constants.js');
+var assert = require('assert-plus')
+var preflight = require('./preflight')
+var actual = require('./actual')
+var constants = require('./constants.js')
 
 /**
  * From http://www.w3.org/TR/cors/#resource-processing-model
@@ -33,47 +33,45 @@ var constants = require('./constants.js');
  * customize preflight request handling
  * @returns  {Object} returns an object with actual and preflight handlers
  */
-module.exports = function(options) {
-
-  assert.object(options, 'options');
-  assert.optionalArray(options.origins, 'options.origins');
+module.exports = function (options) {
+  assert.object(options, 'options')
+  assert.optionalArray(options.origins, 'options.origins')
   options.origins.forEach(function (o) {
-      assert.ok(typeof o === 'string' || o instanceof RegExp, o +
-                ' is not a valid origin');
-  });
-  assert.optionalBool(options.credentials, 'options.credentials');
-  assert.optionalArrayOfString(options.allowHeaders, 'options.allowHeaders');
+    assert.ok(typeof o === 'string' || o instanceof RegExp, o +
+                ' is not a valid origin')
+  })
+  assert.optionalBool(options.credentials, 'options.credentials')
+  assert.optionalArrayOfString(options.allowHeaders, 'options.allowHeaders')
   assert.optionalArrayOfString(options.exposeHeaders,
-                                 'options.exposeHeaders');
-  assert.optionalNumber(options.preflightMaxAge, 'options.preflightMaxAge');
+                                 'options.exposeHeaders')
+  assert.optionalNumber(options.preflightMaxAge, 'options.preflightMaxAge')
   assert.optionalObject(options.preflightStrategy,
-                          'options.preflightStrategy');
+                          'options.preflightStrategy')
 
-  var opts = options;
+  var opts = options
   opts.origins = options.origins || ['*']
-  opts.credentials = options.credentials || false;
-  opts.allowHeaders = options.allowHeaders || [];
-  opts.exposeHeaders = options.exposeHeaders || [];
+  opts.credentials = options.credentials || false
+  opts.allowHeaders = options.allowHeaders || []
+  opts.exposeHeaders = options.exposeHeaders || []
 
   assert.ok(options.origins.indexOf('*') === -1 ||
               options.credentials === false,
-              'credentials not supported with wildcard');
+              'credentials not supported with wildcard')
 
   constants['EXPOSE_HEADERS'].forEach(function (h) {
-      if (opts.exposeHeaders.indexOf(h) === -1) {
-          opts.exposeHeaders.push(h);
-      }
-  });
+    if (opts.exposeHeaders.indexOf(h) === -1) {
+      opts.exposeHeaders.push(h)
+    }
+  })
 
   constants['ALLOW_HEADERS'].forEach(function (h) {
-      if (opts.allowHeaders.indexOf(h) === -1) {
-          opts.allowHeaders.push(h);
-      }
-  });
+    if (opts.allowHeaders.indexOf(h) === -1) {
+      opts.allowHeaders.push(h)
+    }
+  })
 
   return {
     actual: actual.handler(opts),
     preflight: preflight.handler(opts)
-  };
-
-};
+  }
+}
