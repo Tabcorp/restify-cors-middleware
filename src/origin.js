@@ -1,11 +1,16 @@
+exports.match = function(incomingOrigin, origins) {
+    if(!incomingOrigin) {
+      return null;
+    }
 
-exports.match = function(origin, list) {
-  function belongs(o) {
-    return (origin === o || o === "*");
-  }
-  if (origin && list.some(belongs)) {
-    return origin;
-  } else {
-    return false;
-  }
+    for(var i = 0; i < origins.length; i++) {
+        var origin = origins[i];
+        if( (origin instanceof RegExp && origin.test(incomingOrigin)) ||
+            (typeof origin === 'string' && origin === incomingOrigin) ||
+            (origin === '*')) {
+            return incomingOrigin;
+        }
+    }
+
+    return null;
 };

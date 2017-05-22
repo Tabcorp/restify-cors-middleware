@@ -25,6 +25,10 @@
     "mocha": "~3.4.1",
     "should": "~11.2.1",
     "restify": "~4.3.0",
+    "should": "~11.2.1",
     "supertest": "~3.0.0"
+  },
+  "dependencies": {
+    "assert-plus": "^1.0.0"
   }
 }

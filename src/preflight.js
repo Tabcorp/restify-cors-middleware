@@ -1,19 +1,5 @@
-var restify   = require('restify');
-var origin    = require('./origin');
-
-//
-// For now we use the "default headers" from restify.CORS
-// Maybe this should just be a global setting on this module
-// (ie. list of extra Access-Control-Expose-Headers, regardless of what the middleware config says)
-//
-
-//
-// TODO:
-// Handle the spec better around "simple methods" and "simple headers".
-//
-
-var DEFAULT_ALLOW_HEADERS = restify.CORS.ALLOW_HEADERS;
-var HTTP_NO_CONTENT = 204;
+var origin = require('./origin');
+var constants = require('./constants.js');
 
 exports.handler = function(options) {
 
@@ -25,37 +11,36 @@ exports.handler = function(options) {
     if (origin.match(originHeader, options.origins) === false) return next();
 
     // 6.2.3
-    var requestedMethod = req.headers['access-control-request-method'];
+    var requestedMethod = req.headers[constants['AC_REQ_METHOD']];
     if (!requestedMethod) return next();
 
     // 6.2.4
-    var requestedHeaders = req.headers['access-control-request-headers'];
+    var requestedHeaders = req.headers[constants['AC_REQ_HEADERS']];
     requestedHeaders = requestedHeaders ? requestedHeaders.split(', ') : [];
 
     var allowedMethods = [requestedMethod, 'OPTIONS'];
-    var allowedHeaders = DEFAULT_ALLOW_HEADERS.concat(['x-requested-with'])
-                                          .concat(options.allowHeaders);
+    var allowedHeaders = constants['ALLOW_HEADERS']
+                            .concat(options.allowHeaders);
 
     res.once('header', function() {
-
       // 6.2.7
-      res.header('Access-Control-Allow-Origin', originHeader);
-      res.header('Access-Control-Allow-Credentials', true);
+      res.header(constants['AC_ALLOW_ORIGIN'], originHeader);
+      res.header(constants['AC_ALLOW_CREDS'], true);
 
       // 6.2.8
       if (options.preflightMaxAge) {
-        res.header('Access-Control-Max-Age', options.preflightMaxAge);
+        res.header(constants['AC_MAX_AGE'], options.preflightMaxAge);
       }
 
       // 6.2.9
-      res.header('Access-Control-Allow-Methods', allowedMethods.join(', '));
+      res.header(constants['AC_ALLOW_METHODS'], allowedMethods.join(', '));
 
       // 6.2.10
-      res.header('Access-Control-Allow-Headers', allowedHeaders.join(', '));
+      res.header(constants['AC_ALLOW_HEADERS'], allowedHeaders.join(', '));
 
     });
 
-    res.send(HTTP_NO_CONTENT);
+    res.send(constants['HTTP_NO_CONTENT']);
   };
 
 };

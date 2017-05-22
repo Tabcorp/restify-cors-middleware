@@ -10,12 +10,12 @@ describe('Origin list', function() {
 
   it('returns null if the origin is not in the list', function() {
     var o = origin.match('http://random-website.com', list);
-    o.should.eql(false);
+    (o === null).should.eql(true);
   });
 
   it('does not do partial matches', function() {
     var o = origin.match('api.myapp.com', list);
-    o.should.eql(false);
+    (o === null).should.eql(true);
   });
 
   it('returns the origin if it matched', function() {
