@@ -1,13 +1,14 @@
-var origin = require('./origin')
+var originMatcher = require('./origin-matcher')
 var constants = require('./constants.js')
 
 exports.handler = function (options) {
+  var matcher = originMatcher.create(options.origins)
   return function (req, res, next) {
     if (req.method !== 'OPTIONS') return next()
 
     // 6.2.1 and 6.2.2
     var originHeader = req.headers['origin']
-    if (origin.allowed(options.origins, originHeader) === false) return next()
+    if (!matcher(originHeader)) return next()
 
     // 6.2.3
     var requestedMethod = req.headers[constants['AC_REQ_METHOD']]
