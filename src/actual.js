@@ -1,13 +1,14 @@
-var origin = require('./origin.js')
+var originMatcher = require('./origin-matcher.js')
 var constants = require('./constants.js')
 
 exports.handler = function (options) {
+  var matcher = originMatcher.create(options.origins)
   return function (req, res, next) {
     var originHeader = req.headers['origin']
 
     // If either no origin was set, or the origin isn't supported, continue
     // without setting any headers
-    if (!originHeader || !origin.allowed(options.origins || [], originHeader)) {
+    if (!originHeader || !matcher(originHeader)) {
       return next()
     }
 
