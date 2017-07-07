@@ -1,6 +1,6 @@
 {
   "name": "restify-cors-middleware",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Tabcorp Digital Technology Team",
   "license": "MIT",
   "description": "Common middlewares for all Node.js web services",
@@ -19,7 +19,7 @@
     "test": "require-lint && standard && mocha"
   },
   "peerDependencies": {
-    "restify": "2.6.x - 4.3.x"
+    "restify": "5.x.x"
   },
   "devDependencies": {
     "mocha": "~3.4.1",
