@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "Tabcorp Digital Technology Team",
   "license": "MIT",
-  "description": "Common middlewares for all Node.js web services",
+  "description": "CORS middleware with full W3C spec support.",
   "keywords": [
     "restify",
     "cors",
