@@ -31,12 +31,13 @@ server.use(cors.actual)
 
 ## Allowed origins
 
-You can specify the full list of domains and subdomains allowed in your application:
+You can specify the full list of domains and subdomains allowed in your application, using strings or regular expressions.
 
 ```js
 origins: [
   'http://myapp.com',
-  'http://*.myapp.com'
+  'http://*.myapp.com',
+  /^https?:\/\/myapp.com(:[\d]+)?$/
 ]
 ```
 
