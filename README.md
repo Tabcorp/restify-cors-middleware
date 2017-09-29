@@ -13,6 +13,11 @@
 
 [![JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
+## Setup
+```sh
+$ npm install restify-cors-middleware --save
+```
+
 ## Usage
 
 ```js
