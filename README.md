@@ -1,6 +1,6 @@
 # restify-cors-middleware
 
-> CORS middleware with full [W3C spec](www.w3.org/TR/cors) support.
+> CORS middleware with full [W3C spec](https://www.w3.org/TR/cors/) support.
 
 [![NPM](http://img.shields.io/npm/v/restify-cors-middleware.svg?style=flat)](https://npmjs.org/package/restify-cors-middleware)
 [![License](http://img.shields.io/npm/l/restify-cors-middleware.svg?style=flat)](https://github.com/TabDigital/restify-cors-middleware)
