@@ -28,7 +28,7 @@ var constants = require('./constants.js')
  * @param    {Boolean} [options.credentials] if true, uses creds
  * @param    {Array} [options.allowHeaders] user defined headers to allow
  * @param    {Array} [options.exposeHeaders] user defined headers to expose
- * @param    {Number} [options.preflightMaxAge] ms to cache preflight requests
+ * @param    {Number} [options.preflightMaxAge] seconds to cache preflight requests
  * @param    {Object | Function} [options.preflightStrategy]
  * customize preflight request handling
  * @returns  {Object} returns an object with actual and preflight handlers
