@@ -13,7 +13,9 @@ exports.create = function (allowedOrigins) {
 }
 
 function createMatcher (allowedOrigin) {
-  if (allowedOrigin.indexOf('*') === -1) {
+  if (allowedOrigin instanceof RegExp) {
+    return requestOrigin => requestOrigin.match(allowedOrigin)
+  } else if (allowedOrigin.indexOf('*') === -1) {
     // simple string comparison
     return requestOrigin => requestOrigin === allowedOrigin
   } else {

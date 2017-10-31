@@ -52,4 +52,10 @@ describe('Origin list', function () {
     var matcher = originMatcher.create(list)
     matcher('http://random-website.com').should.eql(false)
   })
+
+  it('supports regular expressions', function () {
+    var list = ['http://api.myapp.com', /https?:\/\/example.com(:8888)?/]
+    var matcher = originMatcher.create(list)
+    matcher('https://example.com:8888').should.eql(true)
+  })
 })
