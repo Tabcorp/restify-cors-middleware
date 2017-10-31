@@ -19,7 +19,7 @@
     "test": "require-lint && standard && mocha"
   },
   "peerDependencies": {
-    "restify": "2.6.x - 5.x.x"
+    "restify": "2.6.x - 6.x.x"
   },
   "devDependencies": {
     "mocha": "~3.4.1",
