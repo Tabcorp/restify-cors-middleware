@@ -125,4 +125,24 @@ describe('CORS: preflight requests', function () {
         .expect(204)
         .end(done)
   })
+
+  it('[Not in spec] The Allow-Headers should not contain duplicates', function (done) {
+    var server = test.corsServer({
+      origins: ['http://api.myapp.com', 'http://www.myapp.com']
+    })
+    request(server)
+        .options('/test')
+        .set('Origin', 'http://api.myapp.com')
+        .set('Access-Control-Request-Method', 'GET')
+        .expect(204)
+        .then(function (request) {
+          var allowHeaders = request.headers['access-control-allow-headers'].split(', ')
+
+          if (((new Set(allowHeaders)).size !== allowHeaders.length)) {
+            return done(new Error('duplicate header detected'))
+          }
+
+          done(null)
+        })
+  })
 })
