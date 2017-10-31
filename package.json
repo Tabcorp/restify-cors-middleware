@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "author": "Tabcorp Digital Technology Team",
   "license": "MIT",
-  "description": "Common middlewares for all Node.js web services",
+  "description": "CORS middleware with full W3C spec support",
   "keywords": [
     "restify",
     "cors",
@@ -13,6 +13,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/TabDigital/restify-cors-middleware.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TabDigital/restify-cors-middleware/issues"
   },
   "main": "src/index.js",
   "scripts": {
