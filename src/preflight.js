@@ -19,8 +19,7 @@ exports.handler = function (options) {
     // requestedHeaders = requestedHeaders ? requestedHeaders.split(', ') : []
 
     var allowedMethods = [requestedMethod, 'OPTIONS']
-    var allowedHeaders = constants['ALLOW_HEADERS']
-                            .concat(options.allowHeaders)
+    var allowedHeaders = options.allowHeaders
 
     res.once('header', function () {
       // 6.2.7
