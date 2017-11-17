@@ -94,4 +94,10 @@ describe('CORS: simple / actual requests', function () {
         .expect(200)
         .end(done)
   })
+
+  it('Does not throw if "origins" option left undefined', function () {
+    should.doesNotThrow(function createServer () {
+      test.corsServer({})
+    })
+  })
 })

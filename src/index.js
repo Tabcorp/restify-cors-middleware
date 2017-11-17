@@ -36,10 +36,12 @@ var constants = require('./constants.js')
 module.exports = function (options) {
   assert.object(options, 'options')
   assert.optionalArray(options.origins, 'options.origins')
-  options.origins.forEach(function (o) {
-    assert.ok(typeof o === 'string' || o instanceof RegExp, o +
+  if (options.origins) {
+    options.origins.forEach(function (o) {
+      assert.ok(typeof o === 'string' || o instanceof RegExp, o +
                 ' is not a valid origin')
-  })
+    })
+  }
   assert.optionalBool(options.credentials, 'options.credentials')
   assert.optionalArrayOfString(options.allowHeaders, 'options.allowHeaders')
   assert.optionalArrayOfString(options.exposeHeaders,
