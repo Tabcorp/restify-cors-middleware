@@ -43,6 +43,7 @@ module.exports = function (options) {
     })
   }
   assert.optionalBool(options.credentials, 'options.credentials')
+  assert.optionalBool(options.allowCredentialsAllOrigins, 'options.allowCredentialsAllOrigins')
   assert.optionalArrayOfString(options.allowHeaders, 'options.allowHeaders')
   assert.optionalArrayOfString(options.exposeHeaders,
                                  'options.exposeHeaders')
@@ -57,7 +58,7 @@ module.exports = function (options) {
   opts.allowHeaders = options.allowHeaders || []
   opts.exposeHeaders = options.exposeHeaders || []
 
-  if (!allowCredentialsAllOrigins) {
+  if (!opts.allowCredentialsAllOrigins) {
     assert.ok(options.origins.indexOf('*') === -1 ||
                 options.credentials === false,
                 'credentials not supported with wildcard')
