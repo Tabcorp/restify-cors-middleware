@@ -56,9 +56,9 @@ module.exports = function (options) {
   opts.allowHeaders = options.allowHeaders || []
   opts.exposeHeaders = options.exposeHeaders || []
 
-  assert.ok(options.origins.indexOf('*') === -1 ||
-              options.credentials === false,
-              'credentials not supported with wildcard')
+  // assert.ok(options.origins.indexOf('*') === -1 ||
+  //             options.credentials === false,
+  //             'credentials not supported with wildcard')
 
   constants['EXPOSE_HEADERS'].forEach(function (h) {
     if (opts.exposeHeaders.indexOf(h) === -1) {
