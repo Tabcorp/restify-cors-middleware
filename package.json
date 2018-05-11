@@ -1,6 +1,6 @@
 {
   "name": "restify-cors-middleware",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "Tabcorp Digital Technology Team",
   "license": "MIT",
   "description": "CORS middleware with full W3C spec support",
