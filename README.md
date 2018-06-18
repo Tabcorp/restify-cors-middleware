@@ -53,7 +53,7 @@ Setting `origins: ['*']` is also valid, although it comes with obvious security 
 
 ## Troubleshooting
 
-As per the spec, requests without an `Origin` will not receive any headers. Requests with a matching `Origin` will receive the appropriate response headers. Always be careful that any reverse proxies (e.g. Varnish) very their cache depending on the origin, so you don't serve CORS headers to the wrong request.
+As per the spec, requests without an `Origin` will not receive any headers. Requests with a matching `Origin` will receive the appropriate response headers. Always be careful that any reverse proxies (e.g. Varnish) vary their cache depending on the origin, so you don't serve CORS headers to the wrong request.
 
 ## Compliance to the spec
 
