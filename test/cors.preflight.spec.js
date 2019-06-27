@@ -15,10 +15,10 @@ describe('CORS: preflight requests', function () {
       origins: ['http://api.myapp.com', 'http://www.myapp.com']
     })
     request(server)
-        .options('/test')
-        .expect(test.noHeader('access-control-allow-origin'))
-        .expect(METHOD_NOT_ALLOWED)
-        .end(done)
+      .options('/test')
+      .expect(test.noHeader('access-control-allow-origin'))
+      .expect(METHOD_NOT_ALLOWED)
+      .end(done)
   })
 
   it('6.2.2 Does not set headers if Origin does not match', function (done) {
@@ -26,11 +26,11 @@ describe('CORS: preflight requests', function () {
       origins: ['http://api.myapp.com', 'http://www.myapp.com']
     })
     request(server)
-        .options('/test')
-        .set('Origin', 'http://random-website.com')
-        .expect(test.noHeader('access-control-allow-origin'))
-        .expect(METHOD_NOT_ALLOWED)
-        .end(done)
+      .options('/test')
+      .set('Origin', 'http://random-website.com')
+      .expect(test.noHeader('access-control-allow-origin'))
+      .expect(METHOD_NOT_ALLOWED)
+      .end(done)
   })
 
   it('6.2.3 Does not set headers if Access-Control-Request-Method is missing', function (done) {
@@ -38,12 +38,12 @@ describe('CORS: preflight requests', function () {
       origins: ['http://api.myapp.com', 'http://www.myapp.com']
     })
     request(server)
-        .options('/test')
-        .set('Origin', 'http://api.myapp.com')
-        .expect(test.noHeader('access-control-allow-origin'))
-        .expect(test.noHeader('access-control-allow-methods'))
-        .expect(METHOD_NOT_ALLOWED)
-        .end(done)
+      .options('/test')
+      .set('Origin', 'http://api.myapp.com')
+      .expect(test.noHeader('access-control-allow-origin'))
+      .expect(test.noHeader('access-control-allow-methods'))
+      .expect(METHOD_NOT_ALLOWED)
+      .end(done)
   })
 
   xit('6.2.4 Does not terminate if parsing of Access-Control-Request-Headers fails', function (done) {
@@ -60,14 +60,14 @@ describe('CORS: preflight requests', function () {
       acceptHeaders: ['API-Token']
     })
     request(server)
-        .options('/test')
-        .set('Origin', 'http://api.myapp.com')
-        .set('Access-Control-Request-Headers', 'Weird-Header')
-        .expect(test.noHeader('access-control-allow-origin'))
-        .expect(test.noHeader('access-control-allow-methods'))
-        .expect(test.noHeader('access-control-allow-headers'))
-        .expect(METHOD_NOT_ALLOWED)
-        .end(done)
+      .options('/test')
+      .set('Origin', 'http://api.myapp.com')
+      .set('Access-Control-Request-Headers', 'Weird-Header')
+      .expect(test.noHeader('access-control-allow-origin'))
+      .expect(test.noHeader('access-control-allow-methods'))
+      .expect(test.noHeader('access-control-allow-headers'))
+      .expect(METHOD_NOT_ALLOWED)
+      .end(done)
   })
 
   it('6.2.7 Set the Allow-Origin header if it matches', function (done) {
@@ -75,12 +75,12 @@ describe('CORS: preflight requests', function () {
       origins: ['http://api.myapp.com', 'http://www.myapp.com']
     })
     request(server)
-        .options('/test')
-        .set('Origin', 'http://api.myapp.com')
-        .set('Access-Control-Request-Method', 'GET')
-        .expect('Access-Control-Allow-Origin', 'http://api.myapp.com')
-        .expect(204)
-        .end(done)
+      .options('/test')
+      .set('Origin', 'http://api.myapp.com')
+      .set('Access-Control-Request-Method', 'GET')
+      .expect('Access-Control-Allow-Origin', 'http://api.myapp.com')
+      .expect(204)
+      .end(done)
   })
 
   it('6.2.8 Set the Access-Control-Max-Age header if a max age is provided', function (done) {
@@ -89,12 +89,12 @@ describe('CORS: preflight requests', function () {
       origins: ['http://api.myapp.com', 'http://www.myapp.com']
     })
     request(server)
-        .options('/test')
-        .set('Origin', 'http://api.myapp.com')
-        .set('Access-Control-Request-Method', 'GET')
-        .expect('Access-Control-Max-Age', '5')
-        .expect(204)
-        .end(done)
+      .options('/test')
+      .set('Origin', 'http://api.myapp.com')
+      .set('Access-Control-Request-Method', 'GET')
+      .expect('Access-Control-Max-Age', '5')
+      .expect(204)
+      .end(done)
   })
 
   it('6.2.9 Set the Allow-Method header', function (done) {
@@ -102,12 +102,12 @@ describe('CORS: preflight requests', function () {
       origins: ['http://api.myapp.com', 'http://www.myapp.com']
     })
     request(server)
-        .options('/test')
-        .set('Origin', 'http://api.myapp.com')
-        .set('Access-Control-Request-Method', 'GET')
-        .expect('Access-Control-Allow-Methods', 'GET, OPTIONS')
-        .expect(204)
-        .end(done)
+      .options('/test')
+      .set('Origin', 'http://api.myapp.com')
+      .set('Access-Control-Request-Method', 'GET')
+      .expect('Access-Control-Allow-Methods', 'GET, OPTIONS')
+      .expect(204)
+      .end(done)
   })
 
   it('6.2.10 Set the Allow-Headers to all configured custom headers', function (done) {
@@ -116,14 +116,14 @@ describe('CORS: preflight requests', function () {
       allowHeaders: ['HeaderA']
     })
     request(server)
-        .options('/test')
-        .set('Origin', 'http://api.myapp.com')
-        .set('Access-Control-Request-Method', 'GET')
-        .expect('Access-Control-Allow-Headers', /accept-version/)  // restify defaults
-        .expect('Access-Control-Allow-Headers', /x-api-version/)   // restify defaults
-        .expect('Access-Control-Allow-Headers', /HeaderA/)         // custom header
-        .expect(204)
-        .end(done)
+      .options('/test')
+      .set('Origin', 'http://api.myapp.com')
+      .set('Access-Control-Request-Method', 'GET')
+      .expect('Access-Control-Allow-Headers', /accept-version/) // restify defaults
+      .expect('Access-Control-Allow-Headers', /x-api-version/) // restify defaults
+      .expect('Access-Control-Allow-Headers', /HeaderA/) // custom header
+      .expect(204)
+      .end(done)
   })
 
   it('[Not in spec] The Allow-Headers should not contain duplicates', function (done) {
@@ -131,18 +131,18 @@ describe('CORS: preflight requests', function () {
       origins: ['http://api.myapp.com', 'http://www.myapp.com']
     })
     request(server)
-        .options('/test')
-        .set('Origin', 'http://api.myapp.com')
-        .set('Access-Control-Request-Method', 'GET')
-        .expect(204)
-        .then(function (request) {
-          var allowHeaders = request.headers['access-control-allow-headers'].split(', ')
+      .options('/test')
+      .set('Origin', 'http://api.myapp.com')
+      .set('Access-Control-Request-Method', 'GET')
+      .expect(204)
+      .then(function (request) {
+        var allowHeaders = request.headers['access-control-allow-headers'].split(', ')
 
-          if (((new Set(allowHeaders)).size !== allowHeaders.length)) {
-            return done(new Error('duplicate header detected'))
-          }
+        if (((new Set(allowHeaders)).size !== allowHeaders.length)) {
+          return done(new Error('duplicate header detected'))
+        }
 
-          done(null)
-        })
+        done(null)
+      })
   })
 })
