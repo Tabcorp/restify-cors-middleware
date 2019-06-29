@@ -39,16 +39,16 @@ module.exports = function (options) {
   if (options.origins) {
     options.origins.forEach(function (o) {
       assert.ok(typeof o === 'string' || o instanceof RegExp, o +
-                ' is not a valid origin')
+        ' is not a valid origin')
     })
   }
   assert.optionalBool(options.credentials, 'options.credentials')
   assert.optionalArrayOfString(options.allowHeaders, 'options.allowHeaders')
   assert.optionalArrayOfString(options.exposeHeaders,
-                                 'options.exposeHeaders')
+    'options.exposeHeaders')
   assert.optionalNumber(options.preflightMaxAge, 'options.preflightMaxAge')
   assert.optionalObject(options.preflightStrategy,
-                          'options.preflightStrategy')
+    'options.preflightStrategy')
 
   var opts = options
   opts.origins = options.origins || ['*']
@@ -56,9 +56,7 @@ module.exports = function (options) {
   opts.allowHeaders = options.allowHeaders || []
   opts.exposeHeaders = options.exposeHeaders || []
 
-  assert.ok(options.origins.indexOf('*') === -1 ||
-              options.credentials === false,
-              'credentials not supported with wildcard')
+  assert.ok(options.origins.indexOf('*') === -1 || options.credentials === false, 'credentials not supported with wildcard')
 
   constants['EXPOSE_HEADERS'].forEach(function (h) {
     if (opts.exposeHeaders.indexOf(h) === -1) {
