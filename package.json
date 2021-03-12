@@ -22,12 +22,12 @@
     "test": "require-lint && standard && mocha"
   },
   "peerDependencies": {
-    "restify": "2.6.x - 7.x.x"
+    "restify": ">=5.0.0-0"
   },
   "devDependencies": {
     "mocha": "~3.4.1",
     "require-lint": "^1.1.2",
-    "restify": "~4.3.0",
+    "restify": "~8.5.1",
     "should": "~11.2.1",
     "standard": "^10.0.2",
     "supertest": "~3.0.0"

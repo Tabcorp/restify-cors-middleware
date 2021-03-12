@@ -145,4 +145,24 @@ describe('CORS: preflight requests', function () {
           done(null)
         })
   })
+
+  it('[Not in spec] the after event should fire from a successful preflight request', function (done) {
+    var server = test.corsServer({
+      origins: ['http://api.myapp.com', 'http://www.myapp.com']
+    })
+
+    server.once('after', function (request) {
+      if (request.method === 'OPTIONS' && request.url === '/test') {
+        return done(null)
+      }
+      done(new Error('unexpected request'))
+    })
+
+    request(server)
+        .options('/test')
+        .set('Origin', 'http://api.myapp.com')
+        .set('Access-Control-Request-Method', 'GET')
+        .expect(204)
+        .end()
+  })
 })

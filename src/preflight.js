@@ -39,5 +39,6 @@ exports.handler = function (options) {
     })
 
     res.send(constants['HTTP_NO_CONTENT'])
+    next(false)
   }
 }
