@@ -1,4 +1,4 @@
-# restify-cors-middleware
+# restify-cors-middleware-2023
 
 > CORS middleware with full [W3C spec](https://www.w3.org/TR/cors/) support.
 
